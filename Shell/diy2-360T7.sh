@@ -1,19 +1,22 @@
 #!/bin/bash
-#
-# Copyright (c) 2023 @weigefenxiang
-#
+#============================================================
+# https://github.com/P3TERX/Actions-OpenWrt
+# File name: diy-part2.sh
+# Description: OpenWrt DIY script part 2 (After Update feeds)
+# Lisence: MIT
+# Author: P3TERX
+# Blog: https://p3terx.com
+#============================================================
 
-# name: 替换默认主题 luci-theme-argon
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/' feeds/luci/collections/luci/Makefile
+# 修改默认IP
+sed -i 's/192.168.1.1/192.168.6.1/g' package/base-files/files/bin/config_generate
+sed -i "s/hostname='ImmortalWrt'/hostname='OpenWrt'/g" package/base-files/files/bin/config_generate
 
-# 默认ip 192.168.1.1
-sed -i 's/192.168.[0-9]\{1,3\}.1/192.168.1.1/g' package/base-files/files/bin/config_generate
+# Modify hostname
+#sed -i 's/OpenWrt/360T7/g' package/base-files/files/bin/config_generate
 
 # 修改时区 UTF-8
 sed -i 's/UTC/CST-8/g'  package/base-files/files/bin/config_generate
-
-# 修改主机名 OP
-sed -i 's/ImmortalWrt/OpenWrt/g'  package/base-files/files/bin/config_generate
 
 # 时区
 sed -i 's/time1.apple.com/time1.cloud.tencent.com/g'  package/base-files/files/bin/config_generate
@@ -23,3 +26,13 @@ sed -i 's/pool.ntp.org/cn.pool.ntp.org/g'  package/base-files/files/bin/config_g
 
 # 替换源 
 sed -i 's,mirrors.vsean.net/openwrt,mirrors.pku.edu.cn/immortalwrt,g'  package/emortal/default-settings/files/99-default-settings-chinese
+
+# 修改插件名字
+sed -i 's/"Release Ram"/"内存释放"/g' `egrep "Release Ram" -rl ./`
+sed -i 's/"Custom Commands"/"命令脚本"/g' `egrep "Custom Commands" -rl ./`
+sed -i 's/"Scheduled Reboot"/"定时重启"/g' `egrep "Scheduled Reboot" -rl ./`
+sed -i 's/"Argon Config"/"主题设置"/g' `egrep "Argon Config" -rl ./`
+sed -i 's/"Wake on LAN"/"网络唤醒"/g' `egrep "Wake on LAN" -rl ./`
+sed -i 's/"v2rayA"/"v2ray"/g' `egrep "v2rayA" -rl ./`
+sed -i 's/"DDNS-Go"/"动态域名"/g' `egrep "DDNS-Go" -rl ./`
+sed -i 's/"备份与升级"/"系统升级"/g' `egrep "备份与升级" -rl ./`
