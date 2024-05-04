@@ -37,6 +37,9 @@ sed -i 's/"v2rayA"/"v2ray"/g' `egrep "v2rayA" -rl ./`
 sed -i 's/"DDNS-Go"/"动态域名"/g' `egrep "DDNS-Go" -rl ./`
 sed -i 's/"备份与升级"/"系统升级"/g' `egrep "备份与升级" -rl ./`
 
+#DIY信息
+sed -i "s/DISTRIB_DESCRIPTION=.*/DISTRIB_DESCRIPTION='CN2014 $(date +"%Y%m%d")'/g" package/base-files/files/etc/openwrt_release
+
 cat > package/base-files/files/etc/banner << EOF
   _______                     ________        __
  |       |.-----.-----.-----.|  |  |  |.----.|  |_
